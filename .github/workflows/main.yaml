@@ -5,10 +5,27 @@ on:
     branches:
       - main
 jobs:
-  format:
+  test:
     name: python formatting
     runs-on: ubuntu-latest
 
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+            version: "0.5.6"
+            enable-cache: true
+            cache-dependency-glob: "uv.lock"
+
+      - name: Unit tests
+        run: uv run python -m unittest
+
+  quality:
+    name: python formatting
+    runs-on: ubuntu-latest
+    
     steps:
       - uses: actions/checkout@v4
 
@@ -24,6 +41,3 @@ jobs:
             
       - name: Format
         run: uv tool run ruff format
-
-      - name: Unit tests
-        run: uv run python -m unittest
