@@ -1,0 +1,29 @@
+name: CI on main
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+jobs:
+  format:
+    name: python formatting
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+            version: "0.5.6"
+            enable-cache: true
+            cache-dependency-glob: "uv.lock"
+
+      - name: Linting
+        run: uv tool run ruff check --fix
+            
+      - name: Format
+        run: uv tool run ruff format
+
+      - name: Unit tests
+        run: uv run python -m unittest

@@ -1,0 +1,21 @@
+[project]
+name = "sommelier"
+version = "0.1.0"
+description = "lets keep you inventory up to date"
+readme = "README.md"
+authors = [
+    {name = "dolfno", email = "rhnoordman@gmail.com"},
+]
+requires-python = ">=3.13"
+dependencies = []
+classifiers = [
+  # License
+  "License :: OSI Approved :: MIT License",
+
+  # Python versions supported by the package
+  "Programming Language :: Python :: 3.13",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
